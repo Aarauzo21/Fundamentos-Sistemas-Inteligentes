@@ -536,6 +536,7 @@ class FIFOQueue(Queue):
         self.A.extend(items)
 
     def pop(self):
+        return self.A.pop()
         e = self.A[self.start]
         self.start += 1
         if self.start > 5 and self.start > len(self.A) / 2:
