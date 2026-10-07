@@ -544,6 +544,29 @@ class FIFOQueue(Queue):
             self.start = 0
         return e
 
+class B_B(Queue):
+    """Gestor de lista abierta para sumar la subestimacion o medida heuristica
+    al elegir el camino y que reciba la funcion 'f' q le diga como calcular el coste para ordenarlo"""
+    def __init__(self, f):
+            self.A = []
+            self.f = f # para guardar la f de evaluacion
+    
+    def append(self, item):
+        self.A.append(item)
+        # ordeno de mayor a menor,  menor coste al final
+        self.A.sort(key=self.f, reverse=True)
+
+    def __len__(self):
+        return len(self.A)
+
+    def extend(self, items):
+        self.A.extend(items)
+        # Al haber varios vecinos, vuelvo a ordenar la lista
+        self.A.sort(key=self.f, reverse=True)
+
+    def pop(self):
+            #sac el ultimo elemento
+            return self.A.pop()
 
 
 ## Fig: The idea is we can define things like Fig[3,10] later.

@@ -99,13 +99,29 @@ def graph_search(problem, fringe):
     If two paths reach a state, only use the best one. [Fig. 3.18]"""
     closed = {}
     fringe.append(Node(problem.initial))
+
+    # Creo contadores nodos vistado y expandidos
+    nodos_visitados = 0
+    nodos_expandidos = 0
+
     while fringe:
-        node = fringe.pop()
-        if problem.goal_test(node.state):
-            return node
+        # Visitar; sacar el nodo a la lista abierta
+        node = fringe.pop() 
+        nodos_visitados += 1
+
+        #Ver si es el nodo destino
+        if problem.goal_test(node.state):  """No es el nodo final tengo que expandir esa lista a ese nodo"""
+        print(f"  -> Nodos visitados: {nodos_visitados}")
+        print(f"  -> Nodos expandidos: {nodos_expandidos}")
+        return node
+    
         if node.state not in closed:
             closed[node.state] = True
+
+            #EXPANDIR; calculo los vecinos a los que puedo ir
             fringe.extend(node.expand(problem))
+            nodos_expandidos += 1
+
     return None
 
 
@@ -117,6 +133,19 @@ def breadth_first_graph_search(problem):
 def depth_first_graph_search(problem):
     """Search the deepest nodes in the search tree first. [p 74]"""
     return graph_search(problem, Stack())
+
+def ramificacion_solo_path_cost_search(problem):
+    #el path cost usado queda almacenado en la variable g
+
+    #le paso a B_B una funcion que lea el coste del nodo
+    fringe = B_B(lambda node: node.path_cost)
+    return graph_search(problem, fringe)
+
+def subestimacion_graph_search(problem):
+    #sumo el path cost y la heuristica de la linea recta
+    fringe = B_B(lambda node: node.path_cost + problem.h(node))
+    return graph_search(problem, fringe)
+    
 
 
 
