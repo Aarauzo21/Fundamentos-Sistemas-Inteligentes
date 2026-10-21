@@ -110,10 +110,11 @@ def graph_search(problem, fringe):
         nodos_visitados += 1
 
         #Ver si es el nodo destino
-        if problem.goal_test(node.state):  """No es el nodo final tengo que expandir esa lista a ese nodo"""
-        print(f"  -> Nodos visitados: {nodos_visitados}")
-        print(f"  -> Nodos expandidos: {nodos_expandidos}")
-        return node
+        if problem.goal_test(node.state):  
+            """No es el nodo final tengo que expandir esa lista a ese nodo"""
+            print(f"  -> Nodos visitados: {nodos_visitados}")
+            print(f"  -> Nodos expandidos: {nodos_expandidos}")
+            return node
     
         if node.state not in closed:
             closed[node.state] = True

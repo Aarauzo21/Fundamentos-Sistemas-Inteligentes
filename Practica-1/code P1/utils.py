@@ -1,4 +1,10 @@
-
+import copy
+import operator
+import random
+import math
+import sys
+import os
+from functools import reduce
 #______________________________________________________________________________
 # Simple Data Structures: infinity, Dict, Struct
 
@@ -536,7 +542,6 @@ class FIFOQueue(Queue):
         self.A.extend(items)
 
     def pop(self):
-        return self.A.pop()
         e = self.A[self.start]
         self.start += 1
         if self.start > 5 and self.start > len(self.A) / 2:
@@ -565,7 +570,7 @@ class B_B(Queue):
         self.A.sort(key=self.f, reverse=True)
 
     def pop(self):
-            #sac el ultimo elemento
+            #saca el ultimo elemento
             return self.A.pop()
 
 

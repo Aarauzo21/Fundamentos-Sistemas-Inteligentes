@@ -2,13 +2,13 @@
 
 import search
 
-ab = search.GPSProblem('A', 'B'
+ruta_1 = search.GPSProblem('A', 'B'
                        , search.romania)
-oe = search.GPSProblem('O', 'E'
+ruta_2 = search.GPSProblem('O', 'E'
                        , search.romania)
 
-print(search.breadth_first_graph_search(ab).path())
-print(search.depth_first_graph_search(ab).path())
+print(search.breadth_first_graph_search(ruta_1).path())
+print(search.depth_first_graph_search(ruta_1).path())
 
 print("=== RUTA 1: De Arad (A) a Bucarest (B) ===")
 
